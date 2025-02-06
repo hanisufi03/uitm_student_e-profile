@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profiles - UiTM E-Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fce4ec; 
+            font-family: Arial, sans-serif;
+        }
+        .profile-card, .single-profile {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .profile-card:hover {
+            transform: translateY(-10px);
+        }
+        .profile-card img, .single-profile img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+            margin: 1rem auto;
+        }
+        .profile-card .card-body, .single-profile .card-body {
+            padding: 1.5rem;
+        }
+        h2, .card-title, .card-text {
+            color: #ec407a;
+        }
+        .btn-primary {
+            background-color: #f06292;
+            border: none;
+            border-radius: 30px;
+            padding: 0.5rem 1.5rem;
+        }
+        .btn-primary:hover {
+            background-color: #ec407a;
+        }
+        footer {
+            margin-top: 3rem;
+            background: #f06292;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">UiTM Student Profiles</h2>
+        
+        <!-- Profile List Section -->
+        <div class="row" id="profileList">
+            <!-- Profile 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="profile-card">
+                    <img src="images/gambarkamarul.jpg" alt="Kamarul Azizul">
+                    <div class="card-body">
+                        <h5 class="card-title">Kamarul Azizul</h5>
+                        <p class="card-text">2024907845</p>
+                        <button class="btn btn-primary" onclick="viewProfile('Kamarul Azizul', '2024907845', 'Bachelor of Information Management Systems', 'images/gambarkamarul.jpg')">View Profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="profile-card">
+                    <img src="images/gambarmai.jpg" alt="Nur Fathihah Maisarah">
+                    <div class="card-body">
+                        <h5 class="card-title">Nur Fathihah Maisarah</h5>
+                        <p class="card-text">2024947793</p>
+                        <button class="btn btn-primary" onclick="viewProfile('Nur Fathihah Maisarah', '2024947793', 'Bachelor of Information Management Systems', 'images/gambarmai.jpg')">View Profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="profile-card">
+                    <img src="images/gambarhani.jpg" alt="Nur Hani Sufi">
+                    <div class="card-body">
+                        <h5 class="card-title">Nur Hani Sufi</h5>
+                        <p class="card-text">2024931445</p>
+                        <button class="btn btn-primary" onclick="viewProfile('Nur Hani Sufi', '2024931445', 'Bachelor of Information Management Systems', 'images/gambarhani.jpg')">View Profile</button>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Profile 4 (Betulkan gambar untuk Nur Ainatul Mardhiyah) -->
+<div class="col-md-4 mb-4">
+    <div class="profile-card">
+        <img src="images/gambaraina.jpg" alt="Nur Ainatul Mardhiyah">
+        <div class="card-body">
+            <h5 class="card-title">Nur Ainatul Mardhiyah</h5>
+            <p class="card-text">2024388929</p>
+            <button class="btn btn-primary" onclick="viewProfile('Nur Ainatul Mardhiyah', '2024388929', 'Bachelor of Information Management Systems', 'images/gambaraina.jpg')">View Profile</button>
+        </div>
+    </div>
+</div>
+
+<!-- Profile 5 (Betulkan gambar untuk Nur Ain Irdina) -->
+<div class="col-md-4 mb-4">
+    <div class="profile-card">
+        <img src="images/gambardina.jpg" alt="Nur Ain Irdina">
+        <div class="card-body">
+            <h5 class="card-title">Nur Ain Irdina</h5>
+            <p class="card-text">2024100907</p>
+            <button class="btn btn-primary" onclick="viewProfile('Nur Ain Irdina', '2024100907', 'Bachelor of Information Management Systems', 'images/gambardina.jpg')">View Profile</button>
+        </div>
+    </div>
+</div>
+
+
+
+            <!-- Add more profiles as needed -->
+        </div>
+
+        <!-- Single Profile View Section (Initially Hidden) -->
+        <div id="singleProfile" class="single-profile hidden p-4">
+            <img id="profileImage" src="" alt="Student Photo">
+            <div class="card-body">
+                <h5 id="profileName" class="card-title"></h5>
+                <p id="profileID" class="card-text"></p>
+                <p id="profileProgram" class="card-text"></p>
+                <button class="btn btn-primary mt-3" onclick="goBack()">Back to Profiles</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 UiTM Student E-Profile. All rights reserved.
+    </footer>
+
+    <script>
+        // Function to view individual student profile
+        function viewProfile(name, id, program, imageSrc) {
+            document.getElementById('profileList').classList.add('hidden'); // Hide the list
+            document.getElementById('singleProfile').classList.remove('hidden'); // Show single profile
+
+            // Set profile details
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('profileID').textContent = `Student ID: ${id}`;
+            document.getElementById('profileProgram').textContent = `Program: ${program}`;
+            document.getElementById('profileImage').src = imageSrc;
+        }
+
+        // Function to return to profile list
+        function goBack() {
+            document.getElementById('singleProfile').classList.add('hidden'); // Hide single profile
+            document.getElementById('profileList').classList.remove('hidden'); // Show list
+        }
+    </script>
+</body>
+</html>
+

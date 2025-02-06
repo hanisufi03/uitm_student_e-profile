@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - UiTM E-Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .login-container {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #f06292;
+            font-weight: 600;
+        }
+        .form-control {
+            border-radius: 30px;
+            padding: 0.75rem;
+        }
+        .btn-primary {
+            background-color: #f06292;
+            border: none;
+            border-radius: 30px;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #ec407a;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #f06292;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2 class="login-title">UiTM E-Profile Login</h2>
+        <div id="error-message" class="error-message"></div>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+    </div>
+    <footer>
+        &copy; 2025 UiTM Student E-Profile. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from submitting normally
+
+            // Sample credentials
+            const validUsername = 'student';
+            const validPassword = 'uitm123';
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (username === validUsername && password === validPassword) {
+                window.location.href = 'profiles.html';  // Redirect to profiles page
+            } else {
+                errorMessage.textContent = 'Invalid username or password. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
+
